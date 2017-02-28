@@ -34,7 +34,6 @@ int trsp_node_wrapper(
     edge_t *edges,
     uint32_t edge_count,
     restrict_t *restricts,
-    uint32_t restrict_count,
     long start_vertex,
     long end_vertex,
     bool directed,
@@ -48,17 +47,20 @@ int trsp_node_wrapper(
 
         std::vector<PDVI> ruleTable;
 
-        int j;
         ruleTable.clear();
-        for (size_t i=0; i<restrict_count; i++) {
+        for (const auto &rule : restricts) {
             std::vector<int> seq;
             seq.clear();
-            seq.push_back(restricts[i].target_id);
-            for(j = 0; j<MAX_RULE_LENGTH && restricts[i].via[j]>-1; j++)
+            seq.push_back(rule.target_id);
+            for(const auto &innerRule : MAX_RULE_LENGTH) 
             {
-                seq.push_back(restricts[i].via[j]);
+                if(rule.via[innerRule]<=-1);
+                {
+                    break;
+                }
+                seq.push_back(rule.via[innerRule]);
             }
-            ruleTable.push_back(make_pair(restricts[i].to_cost, seq));
+            ruleTable.push_back(make_pair(rule.to_cost, seq));
         }
 
         size_t count;
