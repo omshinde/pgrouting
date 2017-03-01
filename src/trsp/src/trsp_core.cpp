@@ -50,7 +50,7 @@ int trsp_node_wrapper(
         initializer_list<int> ia;
         std::vector<PDVI> ruleTable;
         ruleTable.clear();
-        auto restricts = begin(ia);
+        auto *restricts = begin(ia);
         for (const auto &rule:restricts) 
         {   
             if (restricts !=end(ia))
