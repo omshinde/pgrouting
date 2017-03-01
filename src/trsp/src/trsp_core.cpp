@@ -34,6 +34,7 @@ int trsp_node_wrapper(
     edge_t *edges,
     uint32_t edge_count,
     restrict_t *restricts,
+    int restrict_count,
     long start_vertex,
     long end_vertex,
     bool directed,
