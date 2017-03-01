@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 #include "GraphDefinition.h"
 #include "utils.h"
+using namespace std;
 
 
 int trsp_node_wrapper(
@@ -45,27 +46,36 @@ int trsp_node_wrapper(
     )
 {
     try {
-
+        
+        initializer_list<int> ia;
         std::vector<PDVI> ruleTable;
         ruleTable.clear();
+        auto restricts = begin(ia);
         for (const auto &rule:restricts) 
-        {
-            std::vector<int> seq;
-            seq.clear();
-            seq.push_back(rule.target_id);
-            int counter = 0;
-            for (const auto &innerRule: rule.via)
+        {   
+            if (restricts !=end(ia))
             {
-                if ((counter++ < MAX_RULE_LENGTH) && (innerRule >-1))
+                std::vector<int> seq;
+                seq.clear();
+                seq.push_back(rule.target_id);
+                int counter = 0;
+                for (const auto &innerRule: rule.via)
                 {
-                    seq.push_back(innerRule);   
+                    if ((counter++ < MAX_RULE_LENGTH) && (innerRule >-1))
+                    {
+                        seq.push_back(innerRule);   
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
-                else
-                {
-                    break;
-                }
+                ruleTable.push_back(make_pair(rule.to_cost, seq));
             }
-            ruleTable.push_back(make_pair(restrict.to_cost, seq));
+            else
+            {
+                break;
+            }
         }
 
         size_t count;
