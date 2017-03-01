@@ -47,7 +47,7 @@ int trsp_node_wrapper(
 
         std::vector<PDVI> ruleTable;
         ruleTable.clear();
-        for (const auto &rule:restricts) 
+        for (restrict_t auto &rule:restricts) 
         {
             std::vector<int> seq;
             seq.clear();
