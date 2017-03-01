@@ -54,11 +54,10 @@ int trsp_node_wrapper(
             seq.push_back(rule.target_id);
             for (const auto &innerRule: rule.via)
             {
-                if(innerRule < 0)
+                if(innerRule >-1)
                 {
-                    break;
+                    seq.push_back(innerRule);   
                 }
-                seq.push_back(innerRule);
             }
             ruleTable.push_back(make_pair(rule.to_cost, seq));
         }
