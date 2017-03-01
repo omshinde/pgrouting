@@ -55,7 +55,7 @@ int trsp_node_wrapper(
             int counter = 0;
             for (const auto &innerRule: rule.via)
             {
-                if ((++counter< MAX_RULE_LENGTH) && (innerRule >-1))
+                if ((counter++ < MAX_RULE_LENGTH) && (innerRule >-1))
                 {
                     seq.push_back(innerRule);   
                 }
