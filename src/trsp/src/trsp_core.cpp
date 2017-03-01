@@ -47,13 +47,13 @@ int trsp_node_wrapper(
 
         std::vector<PDVI> ruleTable;
         ruleTable.clear();
-        for (const auto &restrict:restricts) 
+        for (const auto &rule:restricts) 
         {
             std::vector<int> seq;
             seq.clear();
-            seq.push_back(restrict.target_id);
+            seq.push_back(rule.target_id);
             int counter = 0;
-            for (const auto &innerRule: restrict.via)
+            for (const auto &innerRule: rule.via)
             {
                 if ((++counter< MAX_RULE_LENGTH) && (innerRule >-1))
                 {
