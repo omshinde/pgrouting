@@ -28,7 +28,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 #include "GraphDefinition.h"
 #include "utils.h"
-using namespace std;
 
 
 int trsp_node_wrapper(
@@ -47,14 +46,10 @@ int trsp_node_wrapper(
 {
     try {
         
-        initializer_list<int> ia;
         std::vector<PDVI> ruleTable;
         ruleTable.clear();
-        auto *restricts = begin(ia);
         for (const auto &rule:restricts) 
         {   
-            if (restricts !=end(ia))
-            {
                 std::vector<int> seq;
                 seq.clear();
                 seq.push_back(rule.target_id);
@@ -71,11 +66,7 @@ int trsp_node_wrapper(
                     }
                 }
                 ruleTable.push_back(make_pair(rule.to_cost, seq));
-            }
-            else
-            {
-                break;
-            }
+            
         }
 
         size_t count;
