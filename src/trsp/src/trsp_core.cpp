@@ -58,6 +58,10 @@ int trsp_node_wrapper(
                 {
                     seq.push_back(innerRule);   
                 }
+                else
+                {
+                    break;
+                }
             }
             ruleTable.push_back(make_pair(rule.to_cost, seq));
         }
